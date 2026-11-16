@@ -194,3 +194,362 @@
 </style>
 </head>
 <body>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="1" y="1" width="62" height="62" rx="10" fill="none" stroke="#b8935a" stroke-width="1.4"/>
+        <path d="M32 13 41 33H23Z" fill="#b8935a"/>
+        <rect x="17" y="39" width="30" height="3" fill="#b8935a"/>
+        <rect x="22" y="46" width="20" height="3" fill="#b8935a"/>
+      </svg>
+      <div class="brand-text">
+        <b>学宪法 讲宪法 · 单人赛</b>
+        <span>云南工业信息职业学院 · 第二届校园知识竞赛</span>
+      </div>
+    </div>
+    <div class="topbar-meta">
+      <span id="whoami">未登录</span>
+      <button data-go="admin">管理端</button>
+    </div>
+  </div>
+</header>
+
+<main id="view-home" class="wrap">
+  <section class="hero">
+    <div class="hero-kicker">2026 年国家宪法日 · 宪法学习宣传教育</div>
+    <h1>学宪法、讲宪法、守宪法<br><em>单人赛</em>·人人可参赛</h1>
+    <p class="lead">依据《云南工业信息职业学院第二届“学宪法 讲宪法”校园知识竞赛活动策划案》设置，采用单人赛制：选手独立报名、独立作答、独立排名，成绩实时汇入云端榜单。</p>
+    <div class="rule-strip">
+      <div><b>100</b><span>题目总数（单选60·多选20·判断20）</span></div>
+      <div><b>60</b><span>答题时长（分钟）</span></div>
+      <div><b>100</b><span>试卷满分（每题1分）</span></div>
+      <div><b>个人</b><span>排名方式（得分优先、用时次之）</span></div>
+    </div>
+  </section>
+
+  <section class="entry-grid">
+    <button class="entry dark" data-go="signup">
+      <div class="idx">01 / SIGN UP</div>
+      <h3>在线报名</h3>
+      <p>填写姓名、学号、系（部）与班级，报名后即可参赛。</p>
+    </button>
+    <button class="entry" data-go="practice">
+      <div class="idx">02 / PRACTICE</div>
+      <h3>选手练习</h3>
+      <p>随机 30 题，逐题判分与解析，无需报名即可练习。</p>
+    </button>
+    <button class="entry" data-go="login">
+      <div class="idx">03 / EXAM</div>
+      <h3>正式答题</h3>
+      <p>验证报名信息后开始，限时 60 分钟，成绩计入个人排名。</p>
+    </button>
+    <button class="entry" data-go="board">
+      <div class="idx">04 / RANKING</div>
+      <h3>成绩榜单</h3>
+      <p>个人总榜与系（部）参与情况，实时更新。</p>
+    </button>
+  </section>
+
+  <div class="mode-tip">
+    <span class="chip" id="db-status">正在检测数据源…</span>
+    <span>报名与成绩统一由云端数据库保存；如未配置云端，自动使用本机数据模式。</span>
+  </div>
+
+  <div class="notice">
+    <b>参赛须知：</b>报名信息须真实有效，一人一号、独立作答；多选题需选全所有正确选项方可得分，漏选、多选均不得分；答题过程答案实时保存在本机，意外退出可重新登录继续作答；交卷后成绩即时生成并写入榜单，同一学号可多次作答，取最好成绩参与排名。
+  </div>
+</main>
+
+<main id="view-signup" class="wrap hide">
+  <div class="page-head">
+    <div>
+      <h2>参赛报名</h2>
+      <div class="sub">报名信息用于身份核验与成绩归档，请与学籍信息保持一致</div>
+    </div>
+    <button class="crumb" data-go="home">← 返回首页</button>
+  </div>
+
+  <form class="form-card" id="signup-form" autocomplete="off">
+    <div class="row2">
+      <div class="field">
+        <label>姓名 <i>*</i></label>
+        <input id="s-name" placeholder="请输入真实姓名" maxlength="20">
+      </div>
+      <div class="field">
+        <label>学号 <i>*</i></label>
+        <input id="s-sid" placeholder="如 20260001" maxlength="20">
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>系（部） <i>*</i></label>
+        <input id="s-dept" list="dept-list" placeholder="填写或选择所属系（部）" maxlength="30">
+        <datalist id="dept-list"></datalist>
+      </div>
+      <div class="field">
+        <label>班级 <i>*</i></label>
+        <input id="s-class" placeholder="如 计算机网络技术2501班" maxlength="30">
+      </div>
+    </div>
+    <div class="field">
+      <label>手机号（选填）</label>
+      <input id="s-phone" placeholder="用于成绩通知，可不填" maxlength="11">
+      <div class="hint">仅赛事组织方可见，不会在榜单中公开。</div>
+    </div>
+    <label style="display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#4c4a44;margin:6px 0 22px">
+      <input type="checkbox" id="s-agree" style="width:16px;height:16px;margin-top:3px;flex:0 0 16px">
+      <span>我已阅读并同意参赛须知，承诺独立完成答题，不复制、不传播试题与答案。</span>
+    </label>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn" type="submit">提交报名</button>
+      <button class="btn ghost" type="button" data-go="home">取消</button>
+    </div>
+    <div id="signup-msg" class="hide" style="margin-top:16px;font-size:12.5px"></div>
+  </form>
+</main>
+
+<main id="view-login" class="wrap hide">
+  <div class="page-head">
+    <div>
+      <h2 id="login-title">参赛选手登录</h2>
+      <div class="sub" id="login-sub">请使用报名时的学号与姓名登录，成绩将按学号归档</div>
+    </div>
+    <button class="crumb" data-go="home">← 返回首页</button>
+  </div>
+
+  <form class="form-card" id="login-form" autocomplete="off">
+    <div class="row2">
+      <div class="field">
+        <label>学号 <i>*</i></label>
+        <input id="f-sid" placeholder="如 20260001" maxlength="20">
+      </div>
+      <div class="field">
+        <label>姓名 <i>*</i></label>
+        <input id="f-name" placeholder="请输入报名时填写的姓名" maxlength="20">
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+      <button class="btn" type="submit" id="start-btn">开始答题</button>
+      <button class="btn ghost" type="button" data-go="signup">还没有报名？去报名</button>
+    </div>
+    <div id="login-err" class="hide" style="margin-top:14px;font-size:12.5px;color:var(--red)"></div>
+  </form>
+</main>
+
+<div id="view-exam" class="hide">
+  <div class="exam-bar">
+    <div class="wrap">
+      <div class="exam-who">
+        <b id="exam-name">—</b><br>
+        <span id="exam-meta">—</span>
+      </div>
+      <div class="clock">
+        <div style="text-align:right">
+          <div class="lbl" id="clock-label">剩余时间</div>
+          <div class="t" id="clock-text">60:00</div>
+        </div>
+        <button class="btn sm" id="submit-btn" style="background:var(--red);border-color:var(--red)">交卷</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap exam-main">
+    <section class="q-card">
+      <div class="q-meta">
+        <span class="tag" id="q-type-tag">单选题</span>
+        <span id="q-index">第 1 / 100 题</span>
+        <span id="q-tip" style="color:#8b877e"></span>
+      </div>
+      <div class="q-title" id="q-title">正在载入题目…</div>
+      <div class="opts" id="q-opts"></div>
+      <div class="feedback hide" id="q-feedback"></div>
+      <div class="q-foot">
+        <div class="left">
+          <button class="btn ghost sm" id="prev-btn">上一题</button>
+          <button class="btn ghost sm" id="flag-btn">标记</button>
+        </div>
+        <div class="right">
+          <button class="btn sm" id="next-btn">下一题</button>
+          <button class="btn sm hide" id="finish-practice">提交练习</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="sheet">
+      <h4>答题卡</h4>
+      <div class="p" id="sheet-progress">已答 0 / 100</div>
+      <div class="prog"><i id="prog-bar"></i></div>
+      <div class="grid-nums" id="sheet-grid"></div>
+      <div class="legend">
+        <span><em class="dot"></em>未作答</span>
+        <span><em class="dot done"></em>已作答</span>
+        <span><em class="dot flag"></em>已标记</span>
+        <span><em class="dot cur"></em>当前题目</span>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<main id="view-result" class="wrap hide">
+  <div class="page-head">
+    <div>
+      <h2>成绩单</h2>
+      <div class="sub" id="result-sub">初赛线上答题成绩，个人排名按得分与用时排序</div>
+    </div>
+    <button class="crumb" data-go="board">查看榜单 →</button>
+  </div>
+
+  <div class="result-hero">
+    <div class="score-ring">
+      <b id="r-score">0</b>
+      <span>得分 / 100</span>
+    </div>
+    <div class="result-info">
+      <h2 id="r-title">答题完成</h2>
+      <div class="who" id="r-who">—</div>
+      <div class="kpis">
+        <div class="kpi"><b id="r-right">0</b><span>答对题数</span></div>
+        <div class="kpi"><b id="r-rank">—</b><span>当下排名</span></div>
+        <div class="kpi"><b id="r-rate">0%</b><span>正确率</span></div>
+        <div class="kpi"><b id="r-time">0′00″</b><span>作答用时</span></div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:22px;flex-wrap:wrap">
+        <button class="btn" data-go="home">返回首页</button>
+        <button class="btn ghost" data-go="board">查看榜单</button>
+        <button class="btn ghost hide" id="r-review-btn">查看错题解析</button>
+      </div>
+    </div>
+  </div>
+
+  <section style="margin-top:26px">
+    <h3 style="font-size:16px;margin-bottom:12px">分题型表现</h3>
+    <table>
+      <colgroup><col style="width:22%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:30%"></colgroup>
+      <thead><tr><th>题型</th><th>题量</th><th>答对</th><th>失分</th><th>正确率</th></tr></thead>
+      <tbody id="r-table"></tbody>
+    </table>
+  </section>
+
+  <section id="review-block" class="hide" style="margin-top:26px">
+    <h3 style="font-size:16px;margin-bottom:12px">错题回顾</h3>
+    <div id="review-list" style="display:flex;flex-direction:column;gap:12px"></div>
+  </section>
+</main>
+
+<main id="view-board" class="wrap hide">
+  <div class="page-head">
+    <div>
+      <h2>成绩榜单</h2>
+      <div class="sub" id="board-sub">个人排名按得分从高到低、用时从短到长排序</div>
+    </div>
+    <button class="crumb" data-go="home">← 返回首页</button>
+  </div>
+  <div class="tabs">
+    <button class="tab on" data-tab="person">个人总榜</button>
+    <button class="tab" data-tab="dept">系（部）参与</button>
+  </div>
+
+  <div id="board-person">
+    <table>
+      <colgroup><col style="width:9%"><col style="width:14%"><col style="width:20%"><col style="width:18%"><col style="width:11%"><col style="width:13%"><col style="width:15%"></colgroup>
+      <thead><tr><th>排名</th><th>姓名</th><th>学号</th><th>系（部）</th><th>得分</th><th>用时</th><th>提交时间</th></tr></thead>
+      <tbody id="board-person-body"></tbody>
+    </table>
+  </div>
+
+  <div id="board-dept" class="hide">
+    <table>
+      <colgroup><col style="width:12%"><col style="width:26%"><col style="width:16%"><col style="width:16%"><col style="width:30%"></colgroup>
+      <thead><tr><th>序号</th><th>系（部）</th><th>报名人数</th><th>参赛人数</th><th>平均得分</th></tr></thead>
+      <tbody id="board-dept-body"></tbody>
+    </table>
+  </div>
+
+  <div id="board-empty" class="empty hide">暂无成绩记录。选手交卷后，成绩将实时汇总到榜单。</div>
+
+  <div class="notice" style="margin-top:22px">
+    <b>统计说明：</b>同一学号多次作答的，取最好成绩（得分高者优先，同分时用时短者列前）参与排名；榜单按交卷时间实时更新。对成绩有异议的，请于成绩公布后 3 个工作日内由本人向组委会办公室提出复核申请。
+  </div>
+</main>
+
+<main id="view-admin" class="wrap hide">
+  <div class="page-head">
+    <div>
+      <h2>赛事管理</h2>
+      <div class="sub">报名名单、成绩汇总与数据导出</div>
+    </div>
+    <button class="crumb" data-go="home">← 返回首页</button>
+  </div>
+
+  <div id="admin-gate" class="form-card">
+    <h3 style="font-size:17px;margin-bottom:6px">管理端登录</h3>
+    <p style="font-size:12.5px;color:var(--muted);margin:0 0 18px">请输入赛事管理口令（默认 xf2026，可在源码 ADMIN_PASS 处修改）。</p>
+    <div class="field" style="max-width:320px">
+      <label>管理口令</label>
+      <input id="admin-pass" type="password" placeholder="请输入口令">
+    </div>
+    <button class="btn" id="admin-enter">进入管理端</button>
+    <div id="admin-err" class="hide" style="margin-top:12px;font-size:12.5px;color:var(--red)"></div>
+  </div>
+
+  <div id="admin-body" class="hide">
+    <div class="stat-line">
+      <span>报名人数 <b id="st-reg">0</b></span>
+      <span>成绩记录 <b id="st-res">0</b></span>
+      <span>参赛人数 <b id="st-join">0</b></span>
+      <span>平均得分 <b id="st-avg">0</b></span>
+      <span>数据源 <b id="st-src">本机</b></span>
+    </div>
+    <div class="admin-tools">
+      <button class="btn sm" id="exp-person">导出个人成绩（CSV）</button>
+      <button class="btn ghost sm" id="exp-reg">导出报名名单（CSV）</button>
+      <button class="btn ghost sm" id="exp-json">备份数据（JSON）</button>
+      <button class="btn ghost sm" id="imp-json">导入成绩（JSON）</button>
+      <button class="btn danger sm" id="clear-all">清空本机数据</button>
+      <input type="file" id="imp-file" accept=".json,application/json" class="hide">
+    </div>
+    <div class="tabs">
+      <button class="tab on" data-atab="reg">报名名单</button>
+      <button class="tab" data-atab="res">成绩记录</button>
+    </div>
+    <div id="admin-reg">
+      <table>
+        <colgroup><col style="width:6%"><col style="width:12%"><col style="width:14%"><col style="width:20%"><col style="width:24%"><col style="width:13%"><col style="width:11%"></colgroup>
+        <thead><tr><th>序号</th><th>姓名</th><th>学号</th><th>系（部）</th><th>班级</th><th>手机号</th><th>报名时间</th></tr></thead>
+        <tbody id="admin-reg-body"></tbody>
+      </table>
+    </div>
+    <div id="admin-res" class="hide">
+      <table>
+        <colgroup><col style="width:6%"><col style="width:11%"><col style="width:12%"><col style="width:16%"><col style="width:14%"><col style="width:8%"><col style="width:9%"><col style="width:12%"><col style="width:12%"></colgroup>
+        <thead><tr><th>序号</th><th>姓名</th><th>学号</th><th>系（部）</th><th>班级</th><th>得分</th><th>用时</th><th>提交时间</th><th>操作</th></tr></thead>
+        <tbody id="admin-res-body"></tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:10px" id="admin-note">说明：云端模式下数据来自 Supabase 数据库；本机模式下数据保存在当前浏览器，可通过 JSON 备份与导入迁移。</p>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>云南工业信息职业学院 · 第二届“学宪法 讲宪法”校园知识竞赛答题平台（单人赛）</span>
+    <span>主办：学生处、院团委 ｜ 承办：学生青年成长社</span>
+  </div>
+</footer>
+
+<div id="modal" class="modal-bg hide">
+  <div class="modal">
+    <h3 id="modal-title">提示</h3>
+    <p id="modal-text">—</p>
+    <div class="acts">
+      <button class="btn ghost sm" id="modal-cancel">取消</button>
+      <button class="btn sm" id="modal-ok">确定</button>
+    </div>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script src="bank.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
